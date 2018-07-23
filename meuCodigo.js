@@ -36,8 +36,8 @@ function addMakers(colaboradores) {
 
     // google.maps.event.addListener(marker, 'click', function(event) {
     // 	console.log(coords.coord.lat);
+    //  ver_detalhes(colaborador.id);
     // });
-    // chama utra funcao daqui
 
     markers.push(marker);
   })
