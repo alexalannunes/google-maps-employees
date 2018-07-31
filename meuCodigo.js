@@ -6,7 +6,7 @@ function carregar_mapa() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 5,
     center: {lat: -14.2400732, lng: -53.1805018},
-    mapTypeId: 'satellite',
+    mapTypeId : google.maps.MapTypeId.HYBRID,
     gestureHandling: 'greedy' // zoom com scroll do mouse
   });
 }
