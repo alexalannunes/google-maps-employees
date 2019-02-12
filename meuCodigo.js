@@ -80,6 +80,10 @@ function obterMarkers(coords, photo, map) {
   };
 
   marker.setIcon(image);
+  
+  google.maps.event.addListener(marker, 'click', function (event) {
+    clickColaborador(cpf);
+  });
 
   return marker;
 }
