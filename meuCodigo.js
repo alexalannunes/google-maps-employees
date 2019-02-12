@@ -28,16 +28,38 @@ function trazer_colaboradores(cidade_id) {
 
 function addMakers(colaboradores) {
   $.each(colaboradores, function (index, colaborador) {
+    var contentString = `<div class="mainInfoWindow">
+      <div class="infoWindowImage">
+      <img src="${colaborador.photo}" style="height: 40px; width: 40px; border-radius: 100%" />
+      </div>
+      <div class="infoWindowNameSetor">
+      <div>${colaborador.name}</div>
+      <div>${colaborador.sector}</div>
+      <div>Supervisor: ${colaborador.supervisor}</div>
+      </div>
+      </div>`;
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+
     coord = {
-      lat: parseFloat(colaborador.lat),
-      lng: parseFloat(colaborador.lng)
+      lat: parseFloat(colaborador.lat || colaborador.lat_cidade_origem),
+      lng: parseFloat(colaborador.lng || colaborador.lng_cidade_origem)
     };
-    var marker = obterMarkers(coord, colaborador.photo, map);
+    var marker = obterMarkers(coord, colaborador.photo, colaborador.name, colaborador.cpf, map, colaborador.icone, colaborador.pulando);
 
     // google.maps.event.addListener(marker, 'click', function(event) {
-    // 	console.log(coords.coord.lat);
-    //  ver_detalhes(colaborador.id);
+    //   clickColaborador(colaborador.cpf);
     // });
+
+    google.maps.event.addListener(marker, 'mouseover', function (event) {
+      infowindow.open(map, marker);
+    });
+    google.maps.event.addListener(marker, 'mouseout', function (event) {
+      infowindow.close();
+    });
 
     markers.push(marker);
   })
