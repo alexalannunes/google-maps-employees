@@ -1,3 +1,10 @@
+let vm = $scope;
+
+// mapa
+vm.mapa = {};
+vm.markers = [];
+
+
 vm.carregar_mapa = () => {
     vm.mapa = new google.maps.Map(document.getElementById('mapa'), {
       zoom: 5,
